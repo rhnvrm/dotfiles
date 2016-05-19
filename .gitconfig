@@ -1,0 +1,7 @@
+[user]
+	name = Rohan Verma
+	email = rohanverma2004@gmail.com
+[core]
+	editor = nvim 
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
