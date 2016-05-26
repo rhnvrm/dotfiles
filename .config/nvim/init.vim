@@ -1,8 +1,21 @@
+"vim-plug
+call plug#begin('~/.vim/plugged')
+
+Plug 'bling/vim-airline'
+
+"Markdown Plugins
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'JamshedVesuna/vim-markdown-preview', {'for': 'markdown'}
+
+call plug#end()
+
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
 filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
-colorscheme desert        " set colorscheme
+set background=dark
+colorscheme solarized     " set colorscheme
 set number                " show line numbers
 set laststatus=2          " last window always has a statusline
 filetype indent on        " activates indenting for files
@@ -19,8 +32,24 @@ set expandtab             " use spaces instead of tabs
 set smarttab              " use tabs at the start of a line, spaces elsewhere
 set nowrap                " don't wrap text
 
+"KEY BINDINGS
+"------------
 "Alt+Arrow Navigation between splits"
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
+
+"Toggle Relative Numbering
+nnoremap <F2> :set norelativenumber!<CR> 
+
+
+"Airline-Status
+set laststatus=2
+let g:airline_powerline_fonts = 1
+
+"Vim-Markdown and Markdown-Preview
+let g:vim_markdown_folding_level = 3
+let vim_markdown_preview_github=1
+
+
