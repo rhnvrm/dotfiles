@@ -15,7 +15,7 @@ filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
 set background=dark
-colorscheme solarized     " set colorscheme
+colorscheme monokai       " set colorscheme
 set number                " show line numbers
 set laststatus=2          " last window always has a statusline
 filetype indent on        " activates indenting for files
@@ -31,6 +31,7 @@ set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
 set smarttab              " use tabs at the start of a line, spaces elsewhere
 set nowrap                " don't wrap text
+set termguicolors
 
 "KEY BINDINGS
 "------------
@@ -52,4 +53,4 @@ let g:airline_powerline_fonts = 1
 let g:vim_markdown_folding_level = 3
 let vim_markdown_preview_github=1
 
-
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1

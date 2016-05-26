@@ -85,3 +85,8 @@ source $ZSH/oh-my-zsh.sh
 plugins=(rails python django pyenv sublime github git ruby sudo tmux)
 DEFAULT_USER="rohan"
 export PIP_DOWNLOAD_CACHE=/home/rohan/.pip/cache
+
+#Neovim true color support
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
+#Neovim cursor shape support
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
