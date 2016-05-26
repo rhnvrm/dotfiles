@@ -7,3 +7,9 @@
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
+/* No line below the title bar */
+.ssd .titlebar {
+    border-width: 0;
+    box-shadow-bottom: none;
+}
