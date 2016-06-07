@@ -8,6 +8,10 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview', {'for': 'markdown'}
 
+"Vim notes
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
+
 call plug#end()
 
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!

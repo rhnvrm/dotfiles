@@ -91,4 +91,6 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 #Neovim cursor shape support
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+#Alias for vi and vim to open neovim
 alias vi='nvim'
+alias vim='nvim'
