@@ -37,8 +37,7 @@ set smarttab              " use tabs at the start of a line, spaces elsewhere
 "set nowrap                " don't wrap text
 set termguicolors
 
-set wrap
-set textwidth=72
+set wrap linebreak nolist
 
 "KEY BINDINGS
 "------------
@@ -60,4 +59,10 @@ let g:airline_powerline_fonts = 1
 let g:vim_markdown_folding_level = 3
 let vim_markdown_preview_github=1
 
+"Cursor shape in Insert Mode
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+"For my life/dev logging purposes
+
+"type nlog followed by space to start new log
+iab <expr> nlog strftime("---\n\n%H:%M:%S")
