@@ -34,8 +34,11 @@ set shiftwidth=4          " indent/outdent by 4 columns
 set shiftround            " always indent/outdent to the nearest tabstop
 set expandtab             " use spaces instead of tabs
 set smarttab              " use tabs at the start of a line, spaces elsewhere
-set nowrap                " don't wrap text
+"set nowrap                " don't wrap text
 set termguicolors
+
+set wrap
+set textwidth=72
 
 "KEY BINDINGS
 "------------
