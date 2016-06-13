@@ -94,3 +94,9 @@ export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 #Alias for vi and vim to open neovim
 alias vi='nvim'
 alias vim='nvim'
+
+#Syntax Highlighting
+source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+
+#Scripts for life logging
+alias today='zsh ~/Scripts/open_logs_today.sh'
