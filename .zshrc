@@ -100,3 +100,9 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #Scripts for life logging
 alias today='zsh ~/Scripts/open_logs_today.sh'
+
+# added by travis gem
+[ -f /home/rohan/.travis/travis.sh ] && source /home/rohan/.travis/travis.sh
+
+#thefuck
+eval $(thefuck --alias)
