@@ -1,11 +1,15 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/rohan/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="powerlevel9k/powerlevel9k"
+
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -82,8 +86,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-plugins=(rails python django pyenv sublime github git ruby sudo tmux)
-DEFAULT_USER="rohan"
+plugins=(rails python django pyenv sublime github git ruby sudo tmux zsh-syntax-highlighting)
+DEFAULT_USER="rhnvrm"
 export PIP_DOWNLOAD_CACHE=/home/rohan/.pip/cache
 
 #Neovim true color support
@@ -95,9 +99,6 @@ export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 alias vi='nvim'
 alias vim='nvim'
 
-#Syntax Highlighting
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
-
 #Scripts for life logging
 alias today='zsh ~/Scripts/open_logs_today.sh'
 
@@ -106,3 +107,6 @@ alias today='zsh ~/Scripts/open_logs_today.sh'
 
 #thefuck
 eval $(thefuck --alias)
+
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
