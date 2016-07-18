@@ -110,3 +110,5 @@ eval $(thefuck --alias)
 
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
+
+alias t="topydo"
