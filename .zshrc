@@ -111,4 +111,4 @@ eval $(thefuck --alias)
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
-alias t="topydo"
+alias t="topydo -t /home/rhnvrm/.local/share/todo.txt/todo.txt -d /home/rhnvrm/.local/share/todo.txt/done.txt"
