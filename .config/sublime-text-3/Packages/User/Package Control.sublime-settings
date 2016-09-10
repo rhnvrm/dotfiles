@@ -1,0 +1,23 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Anaconda",
+		"Djaneiro",
+		"Emmet",
+		"GitGutter",
+		"Google Spell Check",
+		"GreekTeX",
+		"GTKDarkThemeVariantSetter",
+		"Markdown Preview",
+		"Package Control",
+		"requirementstxt",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-pep8",
+		"Theme - Flatland"
+	]
+}
