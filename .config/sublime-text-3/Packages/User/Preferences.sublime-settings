@@ -1,5 +1,5 @@
 {
-	"auto_complete": false,
+	"auto_complete": true,
 	"color_scheme": "Packages/User/SublimeLinter/Flatland Dark (SL).tmTheme",
 	"font_size": 12,
 	"ignored_packages":
