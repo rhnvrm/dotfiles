@@ -6,9 +6,12 @@
 	"installed_packages":
 	[
 		"Anaconda",
+		"Color Highlighter",
+		"ColorPicker",
 		"Djaneiro",
 		"Emmet",
 		"GitGutter",
+		"GitHub Flavored Markdown Preview",
 		"Google Spell Check",
 		"GreekTeX",
 		"GTKDarkThemeVariantSetter",
@@ -17,6 +20,7 @@
 		"requirementstxt",
 		"SideBarEnhancements",
 		"SublimeLinter",
+		"SublimeLinter-contrib-eslint",
 		"SublimeLinter-pep8",
 		"Terminal",
 		"Theme - Flatland"
