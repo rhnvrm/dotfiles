@@ -1,4 +1,6 @@
-# Path to your oh-my-zsh installation.
+export TERM="xterm-256color" 
+
+ #Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
