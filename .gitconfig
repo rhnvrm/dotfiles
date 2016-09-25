@@ -8,4 +8,6 @@
 [push]
 	default = simple
 [credential]
-	helper = cache --timeout=21600
+    helper = cache --timeout=21600
+[mergetool]
+    tool = meld 
