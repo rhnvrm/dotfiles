@@ -1,9 +1,10 @@
 {
 	"auto_complete": true,
 	"color_scheme": "Packages/User/SublimeLinter/Flatland Dark (SL).tmTheme",
-	"font_size": 16,
+	"font_size": 12,
 	"ignored_packages":
 	[
+		"Anaconda",
 		"Vintage"
 	],
 	"sublimelinter": false,

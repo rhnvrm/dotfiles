@@ -11,3 +11,5 @@
     helper = cache --timeout=21600
 [mergetool]
     tool = meld 
+[bz]
+	browser = google-chrome

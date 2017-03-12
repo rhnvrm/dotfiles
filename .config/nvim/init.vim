@@ -59,8 +59,6 @@ let g:airline_powerline_fonts = 1
 let g:vim_markdown_folding_level = 3
 let vim_markdown_preview_github=1
 
-"Cursor shape in Insert Mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 "For my life/dev logging purposes
 
