@@ -12,6 +12,10 @@ Plug 'JamshedVesuna/vim-markdown-preview', {'for': 'markdown'}
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 
+"NerdTree
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end()
 
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
@@ -59,6 +63,15 @@ let g:airline_powerline_fonts = 1
 let g:vim_markdown_folding_level = 3
 let vim_markdown_preview_github=1
 
+"NERDTree Commands 
+autocmd vimenter * NERDTree "Open NERDTree on start
+"Toggle Nerdtree using <F9>
+map <F9> :NERDTreeToggle<CR> 
+"Change Default Symbols for NERDTree
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+"Change directory
+let NERDTreeChDirMode=2
 
 "For my life/dev logging purposes
 
