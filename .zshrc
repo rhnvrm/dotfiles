@@ -128,3 +128,6 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export PATH=/usr/local/heroku/bin:$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/games:/usr/local/games:/opt/google/google_appengine
 
 PATH=~/.local/bin:$PATH
+
+# added by travis gem
+[ -f /home/rhnvrm/.travis/travis.sh ] && source /home/rhnvrm/.travis/travis.sh

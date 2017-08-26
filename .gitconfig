@@ -13,3 +13,5 @@
     tool = meld 
 [bz]
 	browser = google-chrome
+#[http]
+#	proxy = socks5://localhost:9080

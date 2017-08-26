@@ -64,7 +64,7 @@ let g:vim_markdown_folding_level = 3
 let vim_markdown_preview_github=1
 
 "NERDTree Commands 
-autocmd vimenter * NERDTree "Open NERDTree on start
+"autocmd vimenter * NERDTree "Open NERDTree on start
 "Toggle Nerdtree using <F9>
 map <F9> :NERDTreeToggle<CR> 
 "Change Default Symbols for NERDTree
