@@ -16,6 +16,9 @@ Plug 'xolox/vim-misc'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+"Emmet
+Plug 'mattn/emmet-vim'
+
 call plug#end()
 
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
