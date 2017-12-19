@@ -66,6 +66,17 @@ plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+# Comment to enable socks proxy
+unset ALL_PROXY all_proxy
+unset HTTP_PROXY 
+unset HTTPS_PROXY
+unset http_proxy
+unset https_proxy
+unset ftp_proxy
+unset FTP_PROXY
+
+
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -110,7 +121,7 @@ alias today='zsh ~/Scripts/open_logs_today.sh'
 [ -f /home/rohan/.travis/travis.sh ] && source /home/rohan/.travis/travis.sh
 
 #thefuck
-eval $(thefuck --alias)
+#eval $(thefuck --alias)
 
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
