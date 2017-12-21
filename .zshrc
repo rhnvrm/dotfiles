@@ -142,3 +142,9 @@ PATH=~/.local/bin:$PATH
 
 # added by travis gem
 [ -f /home/rhnvrm/.travis/travis.sh ] && source /home/rhnvrm/.travis/travis.sh
+
+# pyenv
+export PATH="/home/rhnvrm/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+

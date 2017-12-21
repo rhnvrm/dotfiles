@@ -1,1 +1,8 @@
+# Ignore all files
+# ----------------
 *
+
+# TODO: Add already added files to the list below
+# Exclude list:
+# ----------------
+!.spacemacs
