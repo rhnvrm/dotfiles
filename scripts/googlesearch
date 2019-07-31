@@ -1,0 +1,3 @@
+#/bin/bash
+
+echo "" | dmenu -p "Search google" | firefox google.com/search?q="$(xargs echo)"

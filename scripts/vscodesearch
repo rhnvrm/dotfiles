@@ -1,0 +1,3 @@
+#/bin/bash
+
+tree -dfitrn --noreport ~/Documents | dmenu -p "Open in code:" | code $(xargs echo)
