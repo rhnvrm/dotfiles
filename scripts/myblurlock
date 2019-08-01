@@ -8,11 +8,13 @@ scrot /tmp/screenshot.png
 # blur it
 convert /tmp/screenshot.png -spread 15 -blur 0x4 /tmp/screenshotblur.png
 rm /tmp/screenshot.png
+composite -gravity center /tmp/xkcd.png /tmp/screenshotblur.png /tmp/lockscreen.png
 
 # lock the screen
-i3lock -i /tmp/screenshotblur.png
+i3lock -i /tmp/lockscreen.png
 
 # sleep 1 adds a small delay to prevent possible race conditions with suspend
+fetch_latest_xkcd &
 sleep 1
 
 exit 0

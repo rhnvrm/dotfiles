@@ -1,0 +1,3 @@
+#/bin/bash
+
+wget -qO- http://xkcd.com/| wget -O /tmp/xkcd.png $(grep -Po '(?<=")https://imgs[^/]+/comics/[^"]+\.\w{3}') 
