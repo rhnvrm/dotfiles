@@ -1,0 +1,5 @@
+#/bin/bash
+
+wget -qO- http://c.xkcd.com/random/comic| wget -O /tmp/xkcd.png $(grep -Po '(?<=")https://imgs[^/]+/comics/[^"]+\.\w{3}')
+
+convert -scale 200% /tmp/xkcd.png

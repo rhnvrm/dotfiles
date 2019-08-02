@@ -62,5 +62,5 @@ get_session(){
 
 	echo "dbus-launch ${dbus_args[*]}"
 }
-export PATH=$PATH:/home/rhnvrm/scripts
+export PATH=$PATH:/home/rhnvrm/scripts:/home/rhnvrm/go
 exec $(get_session)

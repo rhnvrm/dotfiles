@@ -3,18 +3,20 @@
 
 # take screenshot
 # import -window root /tmp/screenshot.png
-scrot /tmp/screenshot.png
+#scrot /tmp/screenshot.png
 
 # blur it
-convert /tmp/screenshot.png -spread 15 -blur 0x4 /tmp/screenshotblur.png
-rm /tmp/screenshot.png
-composite -gravity center /tmp/xkcd.png /tmp/screenshotblur.png /tmp/lockscreen.png
+#convert /tmp/screenshot.png -spread 15 -blur 0x4 /tmp/screenshotblur.png
+#rm /tmp/screenshot.png
+#composite -gravity west /tmp/xkcd.png /tmp/screenshotblur.png /tmp/lockscreen.png
 
 # lock the screen
-i3lock -i /tmp/lockscreen.png
-
-# sleep 1 adds a small delay to prevent possible race conditions with suspend
-fetch_latest_xkcd &
+#i3lock -i /tmp/lockscreen.png
+i3lock -t -i /tmp/unsplash.png
 sleep 1
+# sleep 1 adds a small delay to prevent possible race conditions with suspend
+#fetch_random_xkcd &
+fetch_random_unsplash &
+#sleep 1
 
 exit 0

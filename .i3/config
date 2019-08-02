@@ -290,7 +290,7 @@ exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker myblurlock
+exec --no-startup-id xautolock -time 10 -locker myblurlock -corners -=00 -cornerdelay 10 -cornerredelay 10
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
