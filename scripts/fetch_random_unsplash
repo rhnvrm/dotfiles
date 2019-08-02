@@ -1,3 +1,10 @@
 #/bin/bash
+set -e
 wget https://source.unsplash.com/1920x1080/?nature,water -O /tmp/unsplash.jpg
+
+convert /tmp/unsplash.jpg -blur 0x4 /tmp/unsplash.jpg
+
+convert /tmp/unsplash.jpg -gravity North -fill white -pointsize 80 -annotate +0+150 'type to unlock' /tmp/unsplash.jpg 
+convert /tmp/unsplash.jpg -gravity SouthEast -fill white -pointsize 40 -annotate +50+25 ''"$USER"'' /tmp/unsplash.jpg 
+
 convert /tmp/unsplash.jpg /tmp/unsplash.png
