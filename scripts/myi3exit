@@ -6,7 +6,7 @@
 
 case "$1" in
     lock)
-        simplelock unsplash
+        simplelock unsplash 1920x1080 nature
         ;;
     logout)
         i3-msg exit

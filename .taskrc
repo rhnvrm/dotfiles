@@ -1,0 +1,14 @@
+include /home/rhnvrm/.config/taskwarrior/antiglare.theme
+taskd.certificate=/home/rhnvrm/.ssh/taskw/private.certificate.pem
+taskd.key=/home/rhnvrm/.ssh/taskw/private.key.pem
+taskd.ca=/home/rhnvrm/.ssh/taskw/ca.cert.pem
+taskd.server=taskwarrior.inthe.am:53589
+taskd.credentials=inthe_am/rohanverma2004/15de863d-4283-4102-9a2a-73a8c5bb4a99
+taskd.trust=ignore hostname
+context.office=+zerodha
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )

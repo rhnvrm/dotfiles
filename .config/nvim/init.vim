@@ -14,6 +14,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/goyo.vim' " distraction free editing
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " basics
@@ -22,7 +23,9 @@ set hidden
 syntax on
 set encoding=utf-8
 set number relativenumber
-colorscheme mycontrast
+" colorscheme mycontrast
+let base16colorspace=256
+colorscheme base16-tomorrow-night
 set mouse=a
 
 " undo unlimited
