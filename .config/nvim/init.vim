@@ -12,15 +12,24 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/goyo.vim' " distraction free editing
+Plug 'mattn/calendar-vim'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'chriskempson/base16-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'vimwiki/vimwiki'
+Plug 'tbabej/taskwiki'
+Plug 'farseer90718/vim-taskwarrior'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'kien/ctrlp.vim' " Hit <C>p for a list of files/buffers.
 call plug#end()
+
 
 " basics
 set nocompatible
 set hidden
 syntax on
+filetype plugin on
 set encoding=utf-8
 set number relativenumber
 " colorscheme mycontrast
@@ -63,3 +72,10 @@ map <C-l> <C-w>l
 
 " vim-ctrlspace
 let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+
+" vimwiki
+let g:vimwiki_list = [{'path': '~/Documents/wiki',
+                      \ 'syntax': 'markdown', 'ext': '.md',
+                      \ 'path_html': '~/Documents/wiki/html'}]
+let g:taskwiki_markup_syntax = "markdown"
+let g:taskwiki_maplocalleader=",t"

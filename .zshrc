@@ -63,6 +63,8 @@ alias vi="nvim"
 # dotfiles alias
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+alias wiki='vim ~/Documents/wiki/index.md'
+
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
