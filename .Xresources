@@ -87,6 +87,9 @@ URxvt.perl-ext-common: default,matcher,resize-font
 URxvt.keysym.C-Down:  resize-font:smaller
 URxvt.keysym.C-Up:    resize-font:bigger
 
+!CtrlBackspace
+URxvt.keysym.C-BackSpace:       \033[33~
+
 ! Clickable URLs
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1

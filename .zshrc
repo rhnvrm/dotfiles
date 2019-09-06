@@ -18,7 +18,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv)
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -35,7 +35,11 @@ DEFAULT_USER="rhnvrm"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(
+    git
+    vi-mode
+    zsh-autosuggestions
+)
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -72,10 +76,37 @@ autoload -Uz compinit && compinit -i
 unset MANPATH # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
-# ctrl key movements
+# vim normal mode on <ESC>
+bindkey -v
+ # https://github.com/robbyrussell/oh-my-zsh/issues/7809#issuecomment-488267439
+ if [[ "${terminfo[kcuu1]}" != "" ]]; then 
+   autoload -U up-line-or-beginning-search 
+   zle -N up-line-or-beginning-search 
+   bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search 
+ fi 
+ # start typing + [Down-Arrow] - fuzzy find history backward 
+ if [[ "${terminfo[kcud1]}" != "" ]]; then 
+   autoload -U down-line-or-beginning-search 
+   zle -N down-line-or-beginning-search 
+   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search 
+ fi 
+
+# bindkeys
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey '^[[3~' delete-char
 bindkey '^H' backward-kill-word
+bindkey '^[[3^' backward-kill-word
+bindkey '^[[7~' beginning-of-line
+bindkey '^a' beginning-of-line
+bindkey '^b' backward-char
+bindkey '^e' end-of-line
+bindkey '^f' forward-char
+bindkey '^h' backward-delete-char
+bindkey '^k' kill-line
+bindkey '^u' kill-whole-line
+bindkey '^w' backward-kill-word
+
 
 # Base16 Shell
 # install: 
@@ -89,3 +120,9 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # Add golang to path
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+# Add ruby gems to path
+export PATH=$PATH:/home/rhnvrm/.gem/ruby/2.6.0/bin
+
+# Python
+eval "$(pyenv init -)"

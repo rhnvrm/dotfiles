@@ -13,6 +13,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/goyo.vim' " distraction free editing
 Plug 'mattn/calendar-vim'
+Plug 'majutsushi/tagbar'
 Plug 'vim-ctrlspace/vim-ctrlspace'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'chriskempson/base16-vim'
@@ -37,6 +38,8 @@ let base16colorspace=256
 colorscheme base16-tomorrow-night
 set mouse=a
 
+set tw=80
+
 " undo unlimited
 set undodir=~/.vim/undodir
 set undofile
@@ -55,6 +58,8 @@ map <leader>f :Goyo \| set linebreak<CR>
 
 " nerdtree plugin
 map <leader>t :NERDTreeToggle<CR>
+map <leader>T :NERDTreeFind<CR>
+
 " change Default Symbols for NERDTree
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -63,6 +68,15 @@ let NERDTreeChDirMode=2
 
 " split fix
 set splitbelow splitright
+
+" indent using 4 spaces
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
 
 " shortcuts for split navigation
 map <C-h> <C-w>h
@@ -79,3 +93,7 @@ let g:vimwiki_list = [{'path': '~/Documents/wiki',
                       \ 'path_html': '~/Documents/wiki/html'}]
 let g:taskwiki_markup_syntax = "markdown"
 let g:taskwiki_maplocalleader=",t"
+
+" run line and put in buffer
+nmap <leader>E :exec 'r!'.getline('.')<CR>
+nmap <leader>e :exec '!'.getline('.')<CR>
