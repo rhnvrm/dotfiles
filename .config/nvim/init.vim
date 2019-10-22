@@ -23,6 +23,7 @@ Plug 'tbabej/taskwiki'
 Plug 'farseer90718/vim-taskwarrior'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'kien/ctrlp.vim' " Hit <C>p for a list of files/buffers.
+Plug 'junegunn/vim-easy-align'
 call plug#end()
 
 
@@ -90,6 +91,7 @@ let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 " vimwiki
 let g:vimwiki_list = [{'path': '~/Documents/wiki',
                       \ 'syntax': 'markdown', 'ext': '.md',
+                      \ 'list_margin': 2,
                       \ 'path_html': '~/Documents/wiki/html'}]
 let g:taskwiki_markup_syntax = "markdown"
 let g:taskwiki_maplocalleader=",t"
@@ -97,3 +99,15 @@ let g:taskwiki_maplocalleader=",t"
 " run line and put in buffer
 nmap <leader>E :exec 'r!'.getline('.')<CR>
 nmap <leader>e :exec '!'.getline('.')<CR>
+
+" vim easy align
+" ga to enter algin mode
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Align GitHub-flavored Markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+

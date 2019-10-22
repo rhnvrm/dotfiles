@@ -4,3 +4,6 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/firefox
 export PATH="$PATH:/home/rhnvrm/scripts"
+mount | grep "${HOME}/GoogleDrive" >/dev/null || /usr/bin/google-drive-ocamlfuse
+-label rhnvrm "${HOME}/GoogleDrive"&
+
