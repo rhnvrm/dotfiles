@@ -98,7 +98,7 @@ bindkey "^[[1;5D" backward-word
 bindkey '^[[3~' delete-char
 bindkey '^[[33~' backward-kill-word
 bindkey '^H' backward-kill-word
-bindkey '^[[3^' backward-kill-word
+bindkey '^[[3^' kill-word
 bindkey '^[[7~' beginning-of-line
 bindkey '^a' beginning-of-line
 bindkey '^b' backward-char
