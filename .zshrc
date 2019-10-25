@@ -108,7 +108,8 @@ bindkey '^h' backward-delete-char
 bindkey '^k' kill-line
 bindkey '^u' kill-whole-line
 bindkey '^w' backward-kill-word
-
+bindkey '^[[5~' up-history
+bindkey '^[[6~' down-history
 
 # Base16 Shell
 # install: 
