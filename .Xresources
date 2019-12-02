@@ -68,12 +68,18 @@ URxvt.font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=13:antialias=true:h
 
 URxvt.depth:                      32
 URxvt.background:                 [100]#222D31
-URxvt*scrollBar:                  false
+! URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
-URxvt*cursorBlink:                true
+URxvt*cursorBlink:                false
 URxvt*background:                 black
 URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
+
+! scrollbar
+URxvt.scrollBar: true
+URxvt.scrollBar_right: true
+URxvt.scrollBar_floating: true
+
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:            true

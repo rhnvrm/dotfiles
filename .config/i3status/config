@@ -29,7 +29,7 @@ order += "spotify"
 order += "tztime local"
 
 sysdata {
-    format = "CPU [\?color=cpu_used_percent {format_cpu}] [\?color=mem_used_percent Mem: {mem_used}/{mem_total} {mem_total_unit} ({mem_used_percent}%)] "
+    format = "[\?color=mem_used_percent Mem: {mem_used}/{mem_total} {mem_total_unit} ({mem_used_percent}%)] "
     format_cpu = "[\?if=used_percent>80 ⡇|[\?if=used_percent>60 ⡆"
     format_cpu += "|[\?if=used_percent>40 ⡄|[\?if=used_percent>20 ⡀"
     format_cpu += "|⠀]]]]"
@@ -99,5 +99,5 @@ memory {
 
 tztime local {
         # format = "%Y-%m-%d %H:%M:%S"
-        format = " %d.%m %H:%M "
+        format = " %d.%m %H:%M:%S "
 }

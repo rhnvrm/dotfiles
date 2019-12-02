@@ -38,6 +38,7 @@ set number relativenumber
 let base16colorspace=256
 colorscheme base16-tomorrow-night
 set mouse=a
+set autoread
 
 set tw=80
 

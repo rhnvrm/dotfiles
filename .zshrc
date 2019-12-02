@@ -7,8 +7,8 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="powerlevel9k/powerlevel9k"
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+ZSH_THEME="powerlevel9k/powerlevel9k"
+#source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv)
@@ -140,6 +140,8 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+# z
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 # Add golang to path
 export GOPATH=$HOME/go

@@ -18,6 +18,8 @@ message/rfc822=userapp-Thunderbird.desktop
 application/pdf=epdfview.desktop
 application/x-bittorrent=deluge.desktop
 x-scheme-handler/postman=Postman.desktop
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
 
 [Added Associations]
 inode/directory=exo-file-manager.desktop;
@@ -40,3 +42,5 @@ message/rfc822=userapp-Thunderbird.desktop;
 application/pdf=org.gnome.Evince.desktop;libreoffice-draw.desktop;epdfview.desktop;
 application/x-bittorrent=deluge.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;
+video/mp4=mpv.desktop;
+video/x-matroska=mpv.desktop;
