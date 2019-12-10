@@ -141,7 +141,7 @@ bindsym $mod+Shift+a focus child
 ## read 1 character and mark the current window with this character
 bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 ## read 1 character and go to the window with the character
-bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -P 'Goto: '
 ## set a long mark for a container
 bindsym $mod+shift+n exec i3-input -F 'mark %s' -P 'Name: '
 
@@ -304,6 +304,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
+exec --no-startup-id nextcloud 
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky
 # exec --no-startup-id start_conky_green
@@ -343,10 +344,10 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	i3bar_command i3bar
-	status_command py3status -c ~/.config/i3status/config 
-	position bottom
+#bar {
+#	i3bar_command i3bar
+#	status_command py3status -c ~/.config/i3status/config 
+#	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -356,21 +357,25 @@ bar {
 	#bindsym button4 nop
 	#bindsym button5 nop
 	
-    font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
+#    font xft:URWGothic-Book 11
+#	strip_workspace_numbers yes
 
-    colors {
-        background #1A223B
-        statusline #F9FAF9
-        separator  #454947
-
+#   colors {
+#        background #1A223B
+#        statusline #F9FAF9
+#        separator  #454947
+#
 #                           border  backgr. text
-        focused_workspace  #F9FAF9 #2a7ba1 #14171a
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #2a7ba1 #2C2C2C #F9FAF9
-        urgent_workspace   #2a7ba1 #FDF6E3 #E5201D
-    }
+#        focused_workspace  #F9FAF9 #2a7ba1 #14171a
+#        active_workspace   #595B5B #353836 #FDF6E3
+#        inactive_workspace #595B5B #222D31 #EEE8D5
+#        binding_mode       #2a7ba1 #2C2C2C #F9FAF9
+#        urgent_workspace   #2a7ba1 #FDF6E3 #E5201D
+#    }
+#}
+
+bar {
+    i3bar_command $HOME/.config/polybar/launch.sh
 }
 
 # hide/unhide i3status bar
