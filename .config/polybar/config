@@ -24,7 +24,7 @@ alert = #dbbd2c40
 monitor = ${env:MONITOR:}
 bottom = true
 ;width = 98%
-height = 20
+height = 24
 ;offset-x = 1%
 ;offset-y = 2
 ;radius = 6.0
@@ -52,9 +52,9 @@ font-0 = DejaVuSans:pixelsize=10;0
 font-1 = FontAwesome:pixelsize=10;1
 font-2 = WunconSiji:pixelsize=10;2
 
-modules-left = i3 spotify 
+modules-left = i3 
 modules-center = xwindow
-modules-right = mpd volume wlan battery date powermenu
+modules-right = spotify memory cpu wlan battery date powermenu
 
 tray-position = right
 tray-padding = 2
