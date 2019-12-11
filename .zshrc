@@ -40,6 +40,7 @@ plugins=(
     vi-mode
     zsh-syntax-highlighting
     zsh-autosuggestions
+    dotenv
 )
 
 # User configuration
@@ -100,6 +101,7 @@ bindkey '^[[33~' backward-kill-word
 bindkey '^H' backward-kill-word
 bindkey '^[[3^' kill-word
 bindkey '^[[7~' beginning-of-line
+bindkey '^[[8~' end-of-line
 bindkey '^a' beginning-of-line
 bindkey '^b' backward-char
 bindkey '^e' end-of-line

@@ -54,7 +54,7 @@ font-2 = WunconSiji:pixelsize=10;2
 
 modules-left = i3 
 modules-center = xwindow
-modules-right = spotify memory cpu wlan battery date powermenu
+modules-right = spotify memory cpu wlan eth battery date 
 
 tray-position = right
 tray-padding = 2
@@ -74,7 +74,7 @@ scroll-down = i3wm-wsprev
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:200:...%
+label = %title:0:50:...%
 
 
 
@@ -82,7 +82,7 @@ label = %title:0:200:...%
 type = custom/script
 interval = 1
 format-prefix = ""
-format = <label>
+format = %{A1:/home/rhnvrm/scripts/spotify_toggle_play.sh play:}%{A4:/home/rhnvrm/scripts/spotify_toggle_play.sh next:}%{A3:i3-msg workspace 9\:music:}%{A5:/home/rhnvrm/scripts/spotify_toggle_play.sh prev:}<label>%{A}%{A}%{A}%{A}
 exec = /home/rhnvrm/scripts/polybar-spotify/spotify_status.py  -f '{artist}: {song}' -t 20 
 format-underline = #1db954
 
@@ -214,7 +214,7 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
-label = %percentage%%
+label = %{A1:urxvt -e htop&:}%percentage%%%{A}
 
 [module/memory]
 type = internal/memory
@@ -222,7 +222,7 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
-label = %percentage_used%%
+label = %{A1:urxvt -e htop&:}%percentage_used%%%{A}
 
 [module/wlan]
 type = internal/network
@@ -276,7 +276,7 @@ format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
-label = %date% %time%
+label = %{A3:urxvt -e sh -c 'cal -y | less'&:}%date% %time%%{A}
 
 [module/volume]
 type = internal/volume
@@ -361,9 +361,9 @@ type = custom/menu
 
 format-spacing = 1
 
-label-open = 
+label-open = o
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-close = o cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
