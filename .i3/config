@@ -140,7 +140,7 @@ bindsym $mod+Shift+a focus child
 ## Apply goto marks on container
 ## read 1 character and mark the current window with this character
 bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
-## read 1 character and go to the window with the character
+## read and go to the window with the character
 bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -P 'Goto: '
 ## set a long mark for a container
 bindsym $mod+shift+n exec i3-input -F 'mark %s' -P 'Name: '

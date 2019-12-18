@@ -87,7 +87,7 @@ URxvt.scrollBar_floating: true
 ! URxvt*shading:                  138
 
 ! Perl extensions enabled
-URxvt.perl-ext-common: default,matcher,resize-font
+URxvt.perl-ext-common: default,matcher,resize-font,vtwheel
 
 ! Resize fontsize on the fly 
 URxvt.keysym.C-Down:  resize-font:smaller
