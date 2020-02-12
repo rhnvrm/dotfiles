@@ -62,7 +62,7 @@ Xcursor.size:                     0
 ! URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
 ! URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
-URxvt.font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=13:antialias=true:hinting=true,xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=13:antialias=true:hinting=true
+URxvt.font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=13:antialias=true:hinting=true,Noto\ Color\ Emoji:style=Regular
 
 
 

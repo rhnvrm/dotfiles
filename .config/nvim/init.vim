@@ -24,6 +24,7 @@ Plug 'farseer90718/vim-taskwarrior'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'kien/ctrlp.vim' " Hit <C>p for a list of files/buffers.
 Plug 'junegunn/vim-easy-align'
+Plug 'cespare/vim-toml'
 call plug#end()
 
 
