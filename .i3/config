@@ -58,6 +58,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $mod+F1 exec terminal -e 'i3cheetsheet.sh'
 bindsym $mod+F2 exec firefox 
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
