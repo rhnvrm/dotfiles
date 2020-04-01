@@ -40,6 +40,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Set the default user
 DEFAULT_USER="rhnvrm"
 
+# Dont ask for zsh dotenv prompt
+ZSH_DOTENV_PROMPT=false
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -169,3 +172,4 @@ source <(kubectl completion zsh)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
