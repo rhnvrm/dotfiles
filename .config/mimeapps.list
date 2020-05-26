@@ -20,6 +20,7 @@ application/x-bittorrent=deluge.desktop
 x-scheme-handler/postman=Postman.desktop
 video/mp4=mpv.desktop
 video/x-matroska=mpv.desktop
+x-scheme-handler/tg=telegramdesktop.desktop
 
 [Added Associations]
 inode/directory=exo-file-manager.desktop;
@@ -44,3 +45,5 @@ application/x-bittorrent=deluge.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;
 video/mp4=vlc.desktop;mplayer.desktop;mpv.desktop;
 video/x-matroska=mpv.desktop;
+text/markdown=visual-studio-code.desktop;
+application/rss+xml=firefox.desktop;

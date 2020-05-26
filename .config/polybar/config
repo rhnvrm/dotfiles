@@ -54,7 +54,7 @@ font-2 = WunconSiji:pixelsize=10;2
 
 modules-left = i3 
 modules-center = xwindow
-modules-right = spotify memory cpu wlan eth battery date 
+modules-right = spotify temperature memory cpu wlan eth battery date 
 
 tray-position = right
 tray-padding = 2
@@ -211,7 +211,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "c "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %{A1:urxvt -e htop&:}%percentage%%%{A}
@@ -219,7 +219,7 @@ label = %{A1:urxvt -e htop&:}%percentage%%%{A}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "m "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %{A1:urxvt -e htop&:}%percentage_used%%%{A}

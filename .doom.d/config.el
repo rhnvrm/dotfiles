@@ -19,7 +19,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 14))
+(setq doom-font (font-spec :family "Roboto Mono" :size 14))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -54,7 +54,8 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
-
+;; org-mouse
+(require 'org-mouse)
 
 ;; Load elfeed-org
 (require 'elfeed-org)
@@ -83,8 +84,64 @@
   )
 
 (setq org-capture-templates `(
-  ("p" "Protocol" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-        "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-  ("L" "Protocol Link" entry (file+headline ,(concat org-directory "notes.org") "Inbox")
-        "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
+  ("p" "Protocol" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
+        "* TODO %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+  ("L" "Protocol Link" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
+        "* TODO %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
+  ("j" "Journal Entry"
+        item (file+datetree ,(concat org-directory "journal.org"))
+         " [%<%Y-%m-%d %H:%M>] %?"
+         :empty-lines 0)
+  ("t" "Todo Entry"
+        entry (file+headline, (concat org-directory "todo.org") "Inbox")
+        "* TODO %?")
 ))
+
+;; Org Todo
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
+
+(setq org-log-done 'time)
+
+;; Org Capture Frame
+ (defadvice org-capture-finalize
+  (after delete-capture-frame activate)
+   "Advise capture-finalize to close the frame"
+   (if (equal "capture" (frame-parameter nil 'name))
+       (delete-frame)))
+
+ (defadvice org-capture-destroy
+  (after delete-capture-frame activate)
+   "Advise capture-destroy to close the frame"
+   (if (equal "capture" (frame-parameter nil 'name))
+       (delete-frame)))
+
+ ;; make the frame contain a single window. by default org-capture
+ ;; splits the window.
+ (add-hook 'org-capture-mode-hook
+           'delete-other-windows)
+
+ (defun make-capture-frame ()
+   "Create a new frame and run org-capture."
+   (interactive)
+   (make-frame '((name . "capture")
+                 (width . 120)
+                 (height . 15)))
+   (select-frame-by-name "capture")
+   (setq word-wrap 1)
+   (setq truncate-lines nil)
+   (org-capture)) 
+
+
+;; Nov.el mode
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+;; Define opening urxvt
+(defun urxvt ()
+  "Spawn a urxvt instance based on `default-directory' of current buffer."
+  (interactive)
+  (let ((urxvt "urxvt"))
+    (start-process urxvt nil urxvt "-cd" (expand-file-name "./"))))
+
+;; Custom key bindings
+(bind-key "C-M-t" #'urxvt)

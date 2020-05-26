@@ -1,0 +1,2 @@
+#!/bin/bash
+ls ~/.config/autorandr |dmenu -p "Select screen type:" | autorandr --change $(xargs echo)

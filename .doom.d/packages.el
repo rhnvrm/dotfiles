@@ -49,3 +49,19 @@
 ;; This is required for some packages whose default branch isn't 'master' (which
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
+
+;; Org-Kanban
+;; https://github.com/gizmomogwai/org-kanban
+(package! org-kanban)
+
+;; org-rifle
+;; https://github.com/alphapapa/org-rifle
+(package! helm-org-rifle)
+
+;; Load org-noter
+;; https://github.com/weirdNox/org-noter
+(package! org-noter)
+
+;; Nov.el mode
+;; https://github.com/wasamasa/nov.el
+(package! nov)
