@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Script to connect to VPN using bitwarden cli and nmcli
+#
+# This script loads two vars:
+# $VPNNAME - this is the name of the vpn used inside nmcli
+# $BWVPNNAME - this is the key with which you have saved your bitwarden auth
+# 
+# These need to be set in your env file or you can edit this file and load them
+# yourself.
+
+# load required vars from .env file
+export $(cat ~/scripts/.env | xargs)
+
+# unlock session
+BWSESSION=`bw unlock --raw`
+
+# Form VPN pass in format
+# password+totp
+VPNPASS=`bw get --session $BWSESSION password $BWVPNNAME; bw get --session $BWSESSION totp $BWVPNNAME`
+
+# Create temp file needed by nmcli
+tmp=$(mktemp)
+chmod 600 $tmp
+printf "vpn.secrets.password:$VPNPASS" > $tmp
+
+# Connect to vpn using nmcli and tmp file
+nmcli c u "$VPNNAME" passwd-file $tmp
+
+# remove the temp file
+rm $tmp
