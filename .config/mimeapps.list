@@ -44,6 +44,6 @@ application/pdf=org.gnome.Evince.desktop;firefox.desktop;libreoffice-draw.deskto
 application/x-bittorrent=deluge.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;
 video/mp4=vlc.desktop;mplayer.desktop;mpv.desktop;
-video/x-matroska=mpv.desktop;
+video/x-matroska=vlc.desktop;mpv.desktop;
 text/markdown=visual-studio-code.desktop;
 application/rss+xml=firefox.desktop;

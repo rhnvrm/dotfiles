@@ -22,7 +22,7 @@ alert = #dbbd2c40
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 monitor = ${env:MONITOR:}
-bottom = true
+bottom = false
 ;width = 98%
 height = 24
 ;offset-x = 1%
@@ -52,8 +52,8 @@ font-0 = DejaVuSans:pixelsize=10;0
 font-1 = FontAwesome:pixelsize=10;1
 font-2 = WunconSiji:pixelsize=10;2
 
-modules-left = i3 
-modules-center = xwindow
+modules-left = i3 xwindow 
+modules-center = 
 modules-right = spotify temperature memory cpu wlan eth battery date 
 
 tray-position = right
