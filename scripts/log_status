@@ -1,0 +1,18 @@
+log_action () {
+    exec capture4e
+}
+
+handle_dismiss () {
+    echo "dismissed"
+}
+
+ACTION=$(XDG_RUNTIME_DIR=/run/user/$(id -u) /usr/bin/dunstify --action="log,Log" "Message Received")
+
+case "$ACTION" in
+"log")
+    log_action
+    ;;
+"2")
+    handle_dismiss
+    ;;
+esac
