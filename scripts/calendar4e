@@ -1,0 +1,2 @@
+#!/bin/bash
+emacsclient -n -e '(make-calendar-frame)'

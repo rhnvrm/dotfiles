@@ -176,7 +176,7 @@ bindsym $mod+Ctrl+Left workspace prev
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
 set $ws1 1:mail
-set $ws2 2:wiki
+set $ws2 2:emacs
 set $ws3 3:browser
 set $ws4 4
 set $ws5 5

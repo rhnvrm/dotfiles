@@ -132,6 +132,14 @@
    (setq truncate-lines nil)
    (org-capture)) 
 
+ (defun make-calendar-frame ()
+   "Create a new frame and run calendar."
+   (interactive)
+   (make-frame '((name . "calendar")
+                 (width . 120)
+                 (height . 15)))
+   (select-frame-by-name "calendar")
+   (=calendar))
 
 ;; Nov.el mode
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
