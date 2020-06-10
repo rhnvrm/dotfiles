@@ -1,12 +1,12 @@
 log_action () {
-    exec capture4e
+    /home/rhnvrm/scripts/capture4e &> /tmp/logcront.txt
 }
 
 handle_dismiss () {
     echo "dismissed"
 }
 
-ACTION=$(XDG_RUNTIME_DIR=/run/user/$(id -u) /usr/bin/dunstify --action="log,Log" "Message Received")
+ACTION=$(XDG_RUNTIME_DIR=/run/user/$(id -u) /usr/bin/dunstify --action="log,Log" "Log Status")
 
 case "$ACTION" in
 "log")
