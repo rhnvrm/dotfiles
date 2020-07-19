@@ -44,17 +44,17 @@ padding-left = 0
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
 ;font-0 = fixed:pixelsize=10;1
 ;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-0 = DejaVuSans:pixelsize=10;0
+font-0 = DejaVuSansMono Nerd Font Mono:pixelsize=10;0
 font-1 = FontAwesome:pixelsize=10;1
 font-2 = WunconSiji:pixelsize=10;2
 
 modules-left = i3 xwindow 
 modules-center = 
-modules-right = spotify temperature memory cpu wlan eth battery date 
+modules-right = spotify temperature memory cpu wlan eth battery date volume
 
 tray-position = right
 tray-padding = 2
@@ -75,8 +75,6 @@ scroll-down = i3wm-wsprev
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:50:...%
-
-
 
 [module/spotify]
 type = custom/script
@@ -211,10 +209,21 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "c "
+format-prefix = "cpu "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %{A1:urxvt -e htop&:}%percentage%%%{A}
+format = <label> <ramp-coreload>
+; Spacing between individual per-core ramps
+ramp-coreload-spacing = 0
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
 
 [module/memory]
 type = internal/memory
@@ -276,14 +285,14 @@ format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
-label = %{A3:urxvt -e sh -c 'calendar4e'&:}%date% %time%%{A}
+label = %{A3:calendar4e&:}%date% %time%%{A}
 
 [module/volume]
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
+label-volume = vol
+label-volume-foreground = ${colors.foreground-alt}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
@@ -339,8 +348,9 @@ animation-charging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
+thermal-zone = 8
+warn-temperature = 80
+interval = 5
 
 format = <ramp> <label>
 format-underline = #f50a4d
@@ -351,9 +361,9 @@ label = %temperature%
 label-warn = %temperature%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]

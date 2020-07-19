@@ -8,6 +8,8 @@
 # These need to be set in your env file or you can edit this file and load them
 # yourself.
 
+set -e
+
 # load required vars from .env file
 export $(cat ~/scripts/.env | xargs)
 

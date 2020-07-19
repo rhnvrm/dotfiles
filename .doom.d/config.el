@@ -24,7 +24,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-solarized-dark)
+(setq doom-theme 'doom-one)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -73,6 +73,9 @@
 ;; Projectile
 (setq projectile-project-search-path '("~/Documents/Zerodha/gitlab/" "~/Documents/Projects/"))
 
+;; Org column
+(setq org-tags-column -80)
+
 ;; Org Protocol
 (require 'org-protocol)
 
@@ -80,22 +83,22 @@
 (defun transform-square-brackets-to-round-ones(string-to-transform)
   "Transforms [ into ( and ] into ), other chars left unchanged."
   (concat
-  (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform))
+   (mapcar #'(lambda (c) (if (equal c ?\[) ?\( (if (equal c ?\]) ?\) c))) string-to-transform))
   )
 
 (setq org-capture-templates `(
-  ("p" "Protocol" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
-        "* TODO %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-  ("L" "Protocol Link" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
-        "* TODO %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
-  ("j" "Journal Entry"
-        item (file+datetree ,(concat org-directory "journal.org"))
-         " [%<%Y-%m-%d %H:%M>] %?"
-         :empty-lines 0)
-  ("t" "Todo Entry"
-        entry (file+headline, (concat org-directory "todo.org") "Inbox")
-        "* TODO %?")
-))
+                              ("p" "Protocol" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
+                               "* TODO %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+                              ("L" "Protocol Link" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
+                               "* TODO %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
+                              ("j" "Journal Entry"
+                               item (file+datetree ,(concat org-directory "journal.org"))
+                               " [%<%Y-%m-%d %H:%M>] %?"
+                               :empty-lines 0)
+                              ("t" "Todo Entry"
+                               entry (file+headline, (concat org-directory "todo.org") "Inbox")
+                               "* TODO %?")
+                              ))
 
 ;; Org Todo
 (setq org-todo-keywords
@@ -104,42 +107,62 @@
 (setq org-log-done 'time)
 
 ;; Org Capture Frame
- (defadvice org-capture-finalize
-  (after delete-capture-frame activate)
-   "Advise capture-finalize to close the frame"
-   (if (equal "capture" (frame-parameter nil 'name))
-       (delete-frame)))
+(defadvice org-capture-finalize
+    (after delete-capture-frame activate)
+  "Advise capture-finalize to close the frame"
+  (if (equal "capture" (frame-parameter nil 'name))
+      (delete-frame)))
 
- (defadvice org-capture-destroy
-  (after delete-capture-frame activate)
-   "Advise capture-destroy to close the frame"
-   (if (equal "capture" (frame-parameter nil 'name))
-       (delete-frame)))
+(defadvice org-capture-destroy
+    (after delete-capture-frame activate)
+  "Advise capture-destroy to close the frame"
+  (if (equal "capture" (frame-parameter nil 'name))
+      (delete-frame)))
 
- ;; make the frame contain a single window. by default org-capture
- ;; splits the window.
- (add-hook 'org-capture-mode-hook
-           'delete-other-windows)
+;; https://fuco1.github.io/2017-09-02-Maximize-the-org-capture-buffer.html
+(defvar my-org-capture-before-config nil
+  "Window configuration before `org-capture'.")
 
- (defun make-capture-frame ()
-   "Create a new frame and run org-capture."
-   (interactive)
-   (make-frame '((name . "capture")
-                 (width . 120)
-                 (height . 15)))
-   (select-frame-by-name "capture")
-   (setq word-wrap 1)
-   (setq truncate-lines nil)
-   (org-capture)) 
+(defadvice org-capture (before save-config activate)
+  "Save the window configuration before `org-capture'."
+  (setq my-org-capture-before-config (current-window-configuration)))
 
- (defun make-calendar-frame ()
-   "Create a new frame and run calendar."
-   (interactive)
-   (make-frame '((name . "calendar")
-                 (width . 120)
-                 (height . 15)))
-   (select-frame-by-name "calendar")
-   (=calendar))
+(add-hook 'org-capture-mode-hook 'delete-other-windows)
+
+(defun my-org-capture-cleanup ()
+  "Clean up the frame created while capturing via org-protocol."
+  ;; In case we run capture from emacs itself and not an external app,
+  ;; we want to restore the old window config
+  (when my-org-capture-before-config
+    (set-window-configuration my-org-capture-before-config))
+  (-when-let ((&alist 'name name) (frame-parameters))
+    (when (equal name "org-protocol-capture")
+      (delete-frame))))
+
+(add-hook 'org-capture-after-finalize-hook 'my-org-capture-cleanup)
+
+;; make the frame contain a single window. by default org-capture
+;; splits the window.
+(add-hook 'org-capture-mode-hook
+          'delete-other-windows)
+
+(defun make-capture-frame ()
+  "Create a new frame and run org-capture."
+  (interactive)
+  (make-frame '((name . "capture")
+                (width . 120)
+                (height . 30)))
+  (select-frame-by-name "capture")
+  (setq word-wrap 1)
+  (setq truncate-lines nil)
+  (org-capture)) 
+
+(defun make-calendar-frame ()
+  "Create a new frame and run calendar."
+  (interactive)
+  (make-frame '((name . "calendar")))
+  (select-frame-by-name "calendar")
+  (=calendar))
 
 ;; Nov.el mode
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
@@ -153,3 +176,10 @@
 
 ;; Custom key bindings
 (bind-key "C-M-t" #'urxvt)
+
+;; magit forge
+(with-eval-after-load 'forge-core
+  (add-to-list 'forge-alist '("gitlab.zerodha.tech" "gitlab.zerodha.tech/api/v4" "gitlab.zerodha.tech" forge-gitlab-repository))
+  (add-to-list 'forge-alist '("gitlab.zerodha.tech:2280" "gitlab.zerodha.tech/api/v4" "gitlab.zerodha.tech" forge-gitlab-repository))
+  (add-to-list 'auth-sources "~/.authinfo")
+)

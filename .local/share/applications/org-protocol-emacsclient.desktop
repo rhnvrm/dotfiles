@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=EmacsClient as org-protocol handler
+Exec=/home/rhnvrm/scripts/emacsprotocolcapture %u
+Icon=emacs
+Type=Application
+Terminal=false
+Categories=System;
+MimeType=x-scheme-handler/org-protocol;
+X-Desktop-File-Install-Version=0.24
