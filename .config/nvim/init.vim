@@ -1,11 +1,9 @@
 let mapleader = " "
 
-" vim-plug (plugins)
-" automate download
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" auto-install vim-plug
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
 endif
 
 " install plugins
@@ -20,7 +18,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vimwiki/vimwiki'
 Plug 'tbabej/taskwiki'
-Plug 'farseer90718/vim-taskwarrior'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'kien/ctrlp.vim' " Hit <C>p for a list of files/buffers.
 Plug 'junegunn/vim-easy-align'
