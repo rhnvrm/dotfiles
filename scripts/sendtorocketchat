@@ -45,11 +45,17 @@ headers = {
     'X-User-Id': os.getenv('CHAT_ROCKETCHAT_USER'),
     'X-Auth-Token':  os.getenv('CHAT_ROCKETCHAT_AUTH_TOKEN')
 }
+if sys.argv[1] == "chat":
+    r = s.post(os.getenv('CHAT_ROCKETCHAT_ROOT')+'/api/v1/chat.postMessage', data={
+        "channel": sys.argv[2],
+        "text": ' '.join(sys.argv[3:]),
+    }, headers=headers)
+elif sys.argv[1] == "status":
+    r = s.post(os.getenv('CHAT_ROCKETCHAT_ROOT')+'/api/v1/users.setStatus', data={
+        "status": sys.argv[2],
+        "message": ' '.join(sys.argv[3:]),
+    }, headers=headers)
 
-r = s.post(os.getenv('CHAT_ROCKETCHAT_ROOT')+'/api/v1/chat.postMessage', data={
-    "channel": sys.argv[1],
-    "text": ' '.join(sys.argv[2:]),
-}, headers=headers)
 
 # log response (for debugging, in case)
 print(r.text)
