@@ -330,7 +330,10 @@ exec --no-startup-id start_conky
 exec --no-startup-id xautolock -time 10 -locker myblurlock -corners -=00 -cornerdelay 10 -cornerredelay 10
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# start emacs daemon
+exec --no-startup-id emacs --daemon
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -397,6 +400,12 @@ set_from_resource $term_color15    color15
 #bar {
 #    i3bar_command $HOME/.config/polybar/launch.sh
 #}
+
+bar {
+  position top
+  status_command exec $HOME/.config/barista/barista.bin
+  font xft:DejaVuSansMono Nerd Font Mono 10
+}
 
 # hide/unhide i3status bar
 bindsym $mod+shift+m bar mode toggle

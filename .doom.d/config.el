@@ -183,3 +183,7 @@
   (add-to-list 'forge-alist '("gitlab.zerodha.tech:2280" "gitlab.zerodha.tech/api/v4" "gitlab.zerodha.tech" forge-gitlab-repository))
   (add-to-list 'auth-sources "~/.authinfo")
 )
+
+;; https://github.com/hlissner/doom-emacs/issues/3038
+(after! counsel
+  (setq counsel-rg-base-command "rg -M 240 --with-filename --no-heading --line-number --color never %s || true"))

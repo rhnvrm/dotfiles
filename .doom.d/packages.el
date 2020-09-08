@@ -65,3 +65,6 @@
 ;; Nov.el mode
 ;; https://github.com/wasamasa/nov.el
 (package! nov)
+
+;; Ugly background colors in tty Emacs for daemon users
+(package! solaire-mode :disable t)
