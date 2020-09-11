@@ -72,6 +72,14 @@ func formatMediaTime(d time.Duration) string {
 	return fmt.Sprintf("%d:%02d", m, s)
 }
 
+func ifLeft(dofn func()) func(bar.Event) {
+	return func(e bar.Event) {
+		if e.Button == bar.ButtonLeft {
+			dofn()
+		}
+	}
+}
+
 func mediaFormatFunc(m media.Info) bar.Output {
 	if m.PlaybackStatus == media.Stopped || m.PlaybackStatus == media.Disconnected {
 		return nil
@@ -81,15 +89,20 @@ func mediaFormatFunc(m media.Info) bar.Output {
 	if len(title) < 20 {
 		artist = truncate(m.Artist, 40-len(title))
 	}
-	iconAndPosition := pango.Icon("fa-music").Color(colors.Hex("#f70"))
+	iconAndPosition := pango.Icon("fa-music").Color(colors.Hex("#1DB954"))
 	if m.PlaybackStatus == media.Playing {
 		iconAndPosition.Append(
-			spacer, pango.Textf("%s/%s",
-				formatMediaTime(m.Position()),
+			spacer, pango.Textf("%s",
 				formatMediaTime(m.Length)),
 		)
 	}
-	return outputs.Pango(iconAndPosition, spacer, title, " - ", artist)
+
+	out := new(outputs.SegmentGroup)
+	out.Append(outputs.Text("<").OnClick(ifLeft(m.Previous)))
+	out.Append(outputs.Pango(title, " - ", artist, spacer, iconAndPosition))
+	out.Append(outputs.Text(">").OnClick(ifLeft(m.Next)))
+
+	return out
 }
 
 var startTaskManager = click.RunLeft("urxvt -e htop&")
@@ -270,12 +283,12 @@ func main() {
 			)
 		})
 
-	rhythmbox := media.New("rhythmbox").Output(mediaFormatFunc)
+	spotify := media.New("spotify").Output(mediaFormatFunc)
 
 	grp, _ := collapsing.Group(net, temp, freeMem, loadAvg)
 
 	panic(barista.Run(
-		rhythmbox,
+		spotify,
 		grp,
 		vol,
 		batt,
