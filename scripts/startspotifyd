@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Script to start spotifyd with the password obtained from bitwarden
+
+# Fail on error
+set -e
+
+# load required vars from .env file
+export $(cat ~/scripts/.env | xargs)
+# prompt for password
+BWSESSION=`bw unlock --raw`
+
+# get password
+SPTPASS="bw get --session $BWSESSION password www.spotify.com"
+
+# Start the daemon
+spotifyd -u $SPOTIFYUSER -P "$SPTPASS" -b pulseaudio 

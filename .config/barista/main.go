@@ -50,6 +50,13 @@ import (
 
 var spacer = pango.Text(" ").XXSmall()
 
+const (
+	iconPrev  = "\uf04a"
+	iconPlay  = "\uf04b"
+	iconPause = "\uf04c"
+	iconNext  = "\uf04e"
+)
+
 func truncate(in string, l int) string {
 	if len([]rune(in)) <= l {
 		return in
@@ -80,28 +87,39 @@ func ifLeft(dofn func()) func(bar.Event) {
 	}
 }
 
+func icon(icon string) *pango.Node {
+	return pango.Text(icon).Color(colors.Scheme("dim-icon")).XSmall()
+}
+
+func text(txt string, args ...interface{}) *pango.Node {
+	return pango.Text(fmt.Sprintf(txt, args...)).Small()
+}
+
+func makeMediaIconAndPosition(m media.Info) *pango.Node {
+	iconAndPosition := pango.Icon("mdi-music").Color(colors.Hex("#1DB954"))
+	if m.PlaybackStatus == media.Playing {
+		iconAndPosition.Append(spacer,
+			pango.Textf("%s/", formatMediaTime(m.Position())))
+
+	}
+	if m.PlaybackStatus == media.Paused || m.PlaybackStatus == media.Playing {
+		iconAndPosition.Append(spacer,
+			pango.Textf("%s", formatMediaTime(m.Length)))
+
+	}
+	return iconAndPosition
+}
+
 func mediaFormatFunc(m media.Info) bar.Output {
-	if m.PlaybackStatus == media.Stopped || m.PlaybackStatus == media.Disconnected {
+	if !m.Connected() {
 		return nil
 	}
-	artist := truncate(m.Artist, 20)
-	title := truncate(m.Title, 40-len(artist))
-	if len(title) < 20 {
-		artist = truncate(m.Artist, 40-len(title))
-	}
-	iconAndPosition := pango.Icon("fa-music").Color(colors.Hex("#1DB954"))
-	if m.PlaybackStatus == media.Playing {
-		iconAndPosition.Append(
-			spacer, pango.Textf("%s",
-				formatMediaTime(m.Length)),
-		)
-	}
-
 	out := new(outputs.SegmentGroup)
-	out.Append(outputs.Text("<").OnClick(ifLeft(m.Previous)))
-	out.Append(outputs.Pango(title, " - ", artist, spacer, iconAndPosition))
-	out.Append(outputs.Text(">").OnClick(ifLeft(m.Next)))
-
+	out.Append(outputs.Pango(icon(iconPrev)).OnClick(ifLeft(m.Previous)))
+	out.Append(outputs.Repeat(func(time.Time) bar.Output {
+		return makeMediaIconAndPosition(m)
+	}).Every(time.Second))
+	out.Append(outputs.Pango(icon(iconNext)).OnClick(ifLeft(m.Next)))
 	return out
 }
 
@@ -283,12 +301,12 @@ func main() {
 			)
 		})
 
-	spotify := media.New("spotify").Output(mediaFormatFunc)
+	music := media.Auto().Output(mediaFormatFunc)
 
 	grp, _ := collapsing.Group(net, temp, freeMem, loadAvg)
 
 	panic(barista.Run(
-		spotify,
+		music,
 		grp,
 		vol,
 		batt,
