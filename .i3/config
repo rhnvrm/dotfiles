@@ -405,6 +405,7 @@ bar {
   position top
   status_command exec $HOME/.config/barista/barista.bin
   font xft:DejaVuSansMono Nerd Font Mono 10
+  verbose yes
 }
 
 # hide/unhide i3status bar

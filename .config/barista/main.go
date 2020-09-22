@@ -35,6 +35,7 @@ import (
 	"barista.run/modules/media"
 	"barista.run/modules/meminfo"
 	"barista.run/modules/netspeed"
+	"barista.run/modules/shell"
 	"barista.run/modules/sysinfo"
 	"barista.run/modules/volume"
 	"barista.run/modules/volume/alsa"
@@ -97,16 +98,6 @@ func text(txt string, args ...interface{}) *pango.Node {
 
 func makeMediaIconAndPosition(m media.Info) *pango.Node {
 	iconAndPosition := pango.Icon("mdi-music").Color(colors.Hex("#1DB954"))
-	if m.PlaybackStatus == media.Playing {
-		iconAndPosition.Append(spacer,
-			pango.Textf("%s/", formatMediaTime(m.Position())))
-
-	}
-	if m.PlaybackStatus == media.Paused || m.PlaybackStatus == media.Playing {
-		iconAndPosition.Append(spacer,
-			pango.Textf("%s", formatMediaTime(m.Length)))
-
-	}
 	return iconAndPosition
 }
 
@@ -307,6 +298,7 @@ func main() {
 
 	panic(barista.Run(
 		music,
+		shell.New("playerctl", "metadata", "--format", "{{ duration(position)  }}/{{ duration(mpris:length)  }}").Every(time.Second),
 		grp,
 		vol,
 		batt,
