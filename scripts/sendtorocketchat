@@ -1,28 +1,11 @@
 #!/usr/bin/env python
-import sqlite3
-import http.cookiejar
 import requests
-import http.cookiejar as cookielib
 import shutil
 import sys
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-
-def get_cookies(cj, ff_cookies):
-    con = sqlite3.connect(ff_cookies)
-    cur = con.cursor()
-    cur.execute("SELECT host, path, isSecure, expiry, name, value FROM moz_cookies")
-    for item in cur.fetchall():
-        c = cookielib.Cookie(0, item[4], item[5],
-            None, False,
-            item[0], item[0].startswith('.'), item[0].startswith('.'),
-            item[1], False,
-            item[2],
-            item[3], item[3]=="",
-            None, None, {})
-    
-        cj.set_cookie(c)
+from pycookiecheat import chrome_cookies
 
 # Read ENV for secrets
 # MODIFY THIS LINE WITH YOUR .env FILE PATH
@@ -31,30 +14,30 @@ load_dotenv(dotenv_path=env_path)
 
 # since rocket chat is behind pritunl,
 # we need to get pritunl cookie from our cookie store.
-ff_cookies = os.getenv('FIREFOX_COOKIE_LOCATION')
+chromium_cookies = os.getenv('CHROMIUM_COOKIE_LOCATION')
 tmp_cookies = '/tmp/cookies.sqlite' 
-shutil.copyfile(ff_cookies, tmp_cookies)
+shutil.copyfile(chromium_cookies, tmp_cookies)
 
-cj = http.cookiejar.CookieJar()
-get_cookies(cj, tmp_cookies)
-s = requests.Session()
-s.cookies = cj
+url = os.getenv('CHAT_ROCKETCHAT_ROOT')
+cookies = chrome_cookies(url, cookie_file=tmp_cookies)
 
 # post to rocket chat
 headers = {
     'X-User-Id': os.getenv('CHAT_ROCKETCHAT_USER'),
     'X-Auth-Token':  os.getenv('CHAT_ROCKETCHAT_AUTH_TOKEN')
 }
+
 if sys.argv[1] == "chat":
-    r = s.post(os.getenv('CHAT_ROCKETCHAT_ROOT')+'/api/v1/chat.postMessage', data={
+    r = requests.post(os.getenv('CHAT_ROCKETCHAT_ROOT')+'/api/v1/chat.postMessage', data={
         "channel": sys.argv[2],
         "text": ' '.join(sys.argv[3:]),
-    }, headers=headers)
+    }, headers=headers, cookies=cookies)
+
 elif sys.argv[1] == "status":
-    r = s.post(os.getenv('CHAT_ROCKETCHAT_ROOT')+'/api/v1/users.setStatus', data={
+    r = requests.post(os.getenv('CHAT_ROCKETCHAT_ROOT')+'/api/v1/users.setStatus', data={
         "status": sys.argv[2],
         "message": ' '.join(sys.argv[3:]),
-    }, headers=headers)
+    }, headers=headers, cookies=cookies)
 
 
 # log response (for debugging, in case)

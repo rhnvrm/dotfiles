@@ -28,7 +28,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -44,17 +44,18 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ################################################################################################
 
 # Media volume controls
-bindsym XF86AudioMute exec amixer sset 'Master' toggle
-bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
-bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
+bindsym XF86AudioMute exec --no-startup-id amixer sset 'Master' toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset 'Master' 5%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset 'Master' 5%+
 
-exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
+#exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
+exec_always --no-startup-id start-pulseaudio-x11
 exec --no-startup-id volumeicon
 exec --no-startup-id remaps
 ##bindsym $mod+Ctrl+m exec urxvt -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
-bindsym $mod+Ctrl+m exec pavucontrol
+bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
 
 ################################################################################################
 
@@ -64,16 +65,14 @@ bindsym $mod+Ctrl+m exec pavucontrol
 
 
 # Start Applications
-bindsym $mod+Ctrl+b exec urxvt -e 'bmenu'
-bindsym $mod+F1 exec urxvt -e 'i3cheetsheet.sh'
-bindsym $mod+F2 exec firefox 
+bindsym $mod+Ctrl+b exec --no-startup-id urxvt -e 'bmenu'
+bindsym $mod+F1 exec --no-startup-id alacritty -e 'i3cheetsheet.sh'
+bindsym $mod+F2 exec --no-startup-id brave 
 # bindsym $mod+F3 exec pcmanfm
-bindsym $mod+F4 exec newemacsclient
-bindsym $mod+F3 exec urxvt -e 'ranger'
-#bindsym $mod+Shift+F3 exec gksu pcmanfm
-#bindsym $mod+Shift+F3 exec pcmanfm
-bindsym $mod+Shift+F3 exec thunar
-bindsym $mod+F5 exec urxvt -e 'mocp'
+bindsym $mod+F4 exec --no-startup-id newemacsclient
+bindsym $mod+F3 exec --no-startup-id alacritty -e 'ranger'
+bindsym $mod+Shift+F3 exec --no-startup-id pcmanfm
+bindsym $mod+F5 exec --no-startup-id urxvt -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b --experimental-backends
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -81,9 +80,9 @@ bindsym Print exec --no-startup-id xfce4-screenshooter
 #bindsym Print exec --no-startup-id i3-scrot
 #bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 #bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+semicolon exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
+bindsym $mod+Shift+semicolon exec --no-startup-id xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-bindsym $mod+x exec capture4e
+bindsym $mod+x exec --no-startup-id capture4e
 
 
 # focus_follows_mouse no
@@ -126,8 +125,8 @@ bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
 # split orientation
-bindsym $mod+semicolon split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+semicolon split h;exec --no-startup-id notify-send 'tile horizontally'
+bindsym $mod+v split v;exec --no-startup-id notify-send 'tile vertically'
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
@@ -154,11 +153,11 @@ bindsym $mod+Shift+a focus child
 # mark windows
 ## Apply goto marks on container
 ## read 1 character and mark the current window with this character
-bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
 ## read and go to the window with the character
-bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -P 'Goto: '
+bindsym $mod+g exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P 'Goto: '
 ## set a long mark for a container
-bindsym $mod+shift+n exec i3-input -F 'mark %s' -P 'Name: '
+bindsym $mod+shift+n exec --no-startup-id i3-input -F 'mark %s' -P 'Name: '
 
 
 # move the currently focused window to the scratchpad
@@ -256,6 +255,7 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [title="doom-capture"] floating enable
+for_window [title="org-protocol-capture"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -267,7 +267,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"

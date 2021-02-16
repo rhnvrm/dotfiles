@@ -92,33 +92,29 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 # vim normal mode on <ESC>
 bindkey -v
- # https://github.com/robbyrussell/oh-my-zsh/issues/7809#issuecomment-488267439
- if [[ "${terminfo[kcuu1]}" != "" ]]; then 
-   autoload -U up-line-or-beginning-search 
-   zle -N up-line-or-beginning-search 
-   bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search 
- fi 
- # start typing + [Down-Arrow] - fuzzy find history backward 
- if [[ "${terminfo[kcud1]}" != "" ]]; then 
-   autoload -U down-line-or-beginning-search 
-   zle -N down-line-or-beginning-search 
-   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search 
- fi 
+
+# history up/down
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
 
 # bindkeys
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey '^[[3~' delete-char
 bindkey '^[[33~' backward-kill-word
-bindkey '^H' backward-kill-word
 bindkey '^[[3^' kill-word
 bindkey '^[[7~' beginning-of-line
 bindkey '^[[8~' end-of-line
+bindkey '^[[F' end-of-line
 bindkey '^a' beginning-of-line
+bindkey '^[[H' beginning-of-line
 bindkey '^b' backward-char
 bindkey '^e' end-of-line
 bindkey '^f' forward-char
-bindkey '^h' backward-delete-char
+bindkey '^h' backward-delete-word
 bindkey '^k' kill-line
 bindkey '^u' kill-whole-line
 bindkey '^w' backward-kill-word

@@ -68,3 +68,7 @@
 
 ;; Ugly background colors in tty Emacs for daemon users
 (package! solaire-mode :disable t)
+
+(package! vue-mode)
+
+(package! org-super-agenda)

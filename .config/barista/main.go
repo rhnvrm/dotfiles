@@ -35,7 +35,6 @@ import (
 	"barista.run/modules/media"
 	"barista.run/modules/meminfo"
 	"barista.run/modules/netspeed"
-	"barista.run/modules/shell"
 	"barista.run/modules/sysinfo"
 	"barista.run/modules/volume"
 	"barista.run/modules/volume/alsa"
@@ -298,7 +297,6 @@ func main() {
 
 	panic(barista.Run(
 		music,
-		shell.New("playerctl", "metadata", "--format", "{{ duration(position)  }}/{{ duration(mpris:length)  }}").Every(time.Second),
 		grp,
 		vol,
 		batt,

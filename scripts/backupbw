@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Script to backup my bitwarden db to nextcloud, encrypted with pgp.
+
+set -e
+
+export $(cat ~/scripts/.env | xargs)
+
+bw export --output /tmp/bw_export.csv
+
+gpg --output $NEXTCLOUD_PATH/backups/bw/bw-$(date +%F).csv.gpg -e -r $MY_EMAIL /tmp/bw_export.csv 
+
+rm /tmp/bw_export.csv

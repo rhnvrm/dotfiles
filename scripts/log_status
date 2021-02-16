@@ -6,7 +6,8 @@ handle_dismiss () {
     echo "dismissed"
 }
 
-ACTION=$(XDG_RUNTIME_DIR=/run/user/$(id -u) /usr/bin/dunstify --action="log,Log" "Log Status")
+ACTION=$(XDG_RUNTIME_DIR=/run/user/$(id -u) /usr/bin/dunstify --action="log,Log"
+"Middle click to write your thoughts")
 
 case "$ACTION" in
 "log")
