@@ -69,6 +69,7 @@
        electric          ; smarter, keyword-based electric-indent
        ibuffer           ; interactive buffer management
        vc                ; version-control and Emacs, sitting in a tree
+       undo
 
        :term
        ;;eshell            ; a consistent, cross-platform shell (WIP)
@@ -143,7 +144,7 @@
         +dragndrop       ; drag & drop files/images into org buffers
         +hugo            ; use Emacs for hugo blogging
         ;;+jupyter        ; ipython/jupyter support for babel
-        ;;+roam
+        +roam
         +journal
         +pandoc          ; export-with-pandoc support
         +pomodoro        ; be fruitful with the tomato technique
@@ -153,7 +154,10 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (python
+        +lsp
+        +pyenv
+        +poetry)            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client

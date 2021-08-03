@@ -166,6 +166,11 @@ eval "$(pyenv init -)"
 # kubectl completion
 source <(kubectl completion zsh)
 
+# ctrl+r fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 

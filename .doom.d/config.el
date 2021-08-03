@@ -33,6 +33,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Nextcloud/sync/org/")
+(setq org-roam-directory "~/Nextcloud/sync/org/roam/")
 
 ;; hide bold/italics in org files
 (setq org-hide-emphasis-markers t)
@@ -231,3 +232,6 @@
                                   :deadline future)
                            (:name "Big Outcomes"
                                   :tag "bo")))
+
+(after! org-tree-slide
+  (setq org-tree-slide-skip-outline-level 1))
