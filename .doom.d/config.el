@@ -19,7 +19,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Roboto Mono" :size 15))
+(setq doom-font (font-spec :family "Noto Sans Mono" :size 15))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -96,18 +96,18 @@
   )
 
 (setq org-capture-templates `(
-  ("p" "Protocol" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
-   "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-  ("L" "Protocol Link" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
-   "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
-  ("j" "Journal Entry"
-   item (file+datetree ,(concat org-directory "journal.org"))
-   "%(format-time-string org-journal-time-format)% \n%?"
-   :empty-lines 0)
-  ("t" "Todo Entry"
-   entry (file+headline, (concat org-directory "todo.org") "Inbox")
-   "* %?")
-  ))
+                              ("p" "Protocol" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
+                               "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+                              ("L" "Protocol Link" entry (file+headline ,(concat org-directory "todo.org") "Inbox")
+                               "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
+                              ("j" "Journal Entry"
+                               item (file+datetree ,(concat org-directory "journal.org"))
+                               "%(format-time-string org-journal-time-format)% \n%?"
+                               :empty-lines 0)
+                              ("t" "Todo Entry"
+                               entry (file+headline, (concat org-directory "todo.org") "Inbox")
+                               "* %?")
+                              ))
 
 ;; Org Todo
 (setq org-todo-keywords
@@ -205,14 +205,14 @@
 ;; use mu4e for e-mail in emacs
 (setq mu4e-mu4e-mail-path "~/Mail")
 (set-email-account! "rohanvermanet"
-  '((mu4e-sent-folder       . "/Sent")
-    (mu4e-drafts-folder     . "/Drafts")
-    (mu4e-trash-folder      . "/Trash")
-    (mu4e-refile-folder     . "/Archives")
-    (smtpmail-smtp-user     . "hello@rohanverma.net")
-    (user-mail-address      . "hello@rohanverma.net")    ;; only needed for mu < 1.4
-    (mu4e-compose-signature . "---\nRohan Verma"))
-  t)
+                    '((mu4e-sent-folder       . "/Sent")
+                      (mu4e-drafts-folder     . "/Drafts")
+                      (mu4e-trash-folder      . "/Trash")
+                      (mu4e-refile-folder     . "/Archives")
+                      (smtpmail-smtp-user     . "hello@rohanverma.net")
+                      (user-mail-address      . "hello@rohanverma.net")    ;; only needed for mu < 1.4
+                      (mu4e-compose-signature . "---\nRohan Verma"))
+                    t)
 (setq mu4e-sent-messages-behavior 'sent)
 
 ;; hook for vue
@@ -222,16 +222,19 @@
 (setq  org-super-agenda-groups '((:name "Today"
                                   :time-grid t
                                   :scheduled today)
-                           (:name "Due today"
+                                 (:name "Due today"
                                   :deadline today)
-                           (:name "Important"
+                                 (:name "Important"
                                   :priority "A")
-                           (:name "Overdue"
+                                 (:name "Overdue"
                                   :deadline past)
-                           (:name "Due soon"
+                                 (:name "Due soon"
                                   :deadline future)
-                           (:name "Big Outcomes"
+                                 (:name "Big Outcomes"
                                   :tag "bo")))
 
 (after! org-tree-slide
   (setq org-tree-slide-skip-outline-level 1))
+
+;; golangci-lint
+(setq flycheck-golangci-lint-config "~/Documents/Zerodha/gitlab/commons/gitlab-templates/golang/.golangci.yml")

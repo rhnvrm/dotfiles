@@ -54,6 +54,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset 'Master' 5%+
 
 #exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
 exec_always --no-startup-id start-pulseaudio-x11
+exec_always --no-startup-id pulseeffects --gapplication-service
 exec --no-startup-id volumeicon
 exec --no-startup-id remaps
 ##bindsym $mod+Ctrl+m exec urxvt -e 'alsamixer'
@@ -335,6 +336,8 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
 exec --no-startup-id nextcloud 
+exec --no-startup-id kdeconnect-indicator 
+exec --no-startup-id birdtray 
 exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
 #exec --no-startup-id ripcord
 # exec_always --no-startup-id sbxkb

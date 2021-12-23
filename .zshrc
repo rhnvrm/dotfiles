@@ -53,6 +53,7 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     dotenv
+    ssh-agent
 )
 
 # User configuration
@@ -73,7 +74,10 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 # Keychain for ssh
-eval `keychain --quiet --agents ssh --eval id_rsa` > /dev/null
+#eval `keychain --quiet --agents ssh --eval id_rsa` > /dev/null
+#eval "$(ssh-agent -s)" > /dev/null
+zstyle :omz:plugins:ssh-agent lazy yes
+
 
 # Custom alias
 alias vim="nvim"
@@ -156,7 +160,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # Add golang to path
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-
+export PATH=$PATH:~/scripts
 # Add ruby gems to path
 export PATH=$PATH:/home/rhnvrm/.gem/ruby/2.6.0/bin
 
